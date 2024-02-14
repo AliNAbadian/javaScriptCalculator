@@ -9,14 +9,24 @@ function clearDisplay() {
 }
 
 function calculate() {
-  //   if ((display.value = NaN)) {
-  //     alert("You Cant Do That!");
-  //   } else {
-  //     display.value = eval(display.value);
-  //   }
   try {
     display.value = eval(display.value);
   } catch (error) {
     display.value = "Error";
   }
 }
+
+document.addEventListener("keydown", function (event) {
+  const key = event.key;
+  if (key >= "0" && key <= "9") {
+    appendToDisplay(key);
+  } else if (key === "+" || key === "-" || key === "*" || key === "/") {
+    appendToDisplay(key);
+  } else if (key === ".") {
+    appendToDisplay(".");
+  } else if (key === "Backspace") {
+    clearDisplay();
+  } else if (key === "Enter") {
+    calculate();
+  }
+});
